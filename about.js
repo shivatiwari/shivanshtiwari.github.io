@@ -11,7 +11,7 @@ function setup()
 {
     background(51,51);
     createCanvas(innerWidth,innerHeight);
-   // Particles = new Particle(500,500);
+  
     for(var i = 0 ; i < 5; i++)
         {
             Particles.push(new Particle(random(0,width),random(0,height)));
@@ -21,15 +21,11 @@ function setup()
 function mousePressed()
 {
     Particles.push(new Particle(mouseX,mouseY));
-    
 }
 function draw()
 {
-   
     background(251,51); 
-    
-    
-    
+
     for(var i = 0 ; i < Particles.length; i++)
         {
             Particles[i].update();
@@ -40,16 +36,13 @@ function draw()
                Particles.splice(0,1);
             }
         }
-    
-    
+
     pop();textSize(15);
     fill(100,100);
     textFont(myFont2);
     text('<p>',415,180);
     push();
-    
-    
-    
+
     textSize(64);
     textFont(myFont);
     push();
@@ -68,8 +61,6 @@ function draw()
     image(img, width/20 - 50, -height/15, img.width/2, img.height/2);
     pop();
     
-    
-    
     pop();textSize(15);
     fill(100,100);
     textFont(myFont2);
@@ -78,24 +69,16 @@ function draw()
 }
 
 function Particle(x,y)
-{
-    
-   var s = 7;
+{ 
+    var s = 7;
     this.x = x;
     this.y = y;
-    
     this.xspeed = random(2,s);
     this.yspeed = random(2,s);
-    
     this.history = [];
-    
     this.update = function()
     {
-        
-   
-        
-//     this.x = this.x + random(-s,s);;
-//      this.y = this.y + random(-s,s);;
+
         this.x = this.x + this.xspeed;
         this.y = this.y + this.yspeed ;
         
@@ -106,8 +89,7 @@ function Particle(x,y)
             }
         
         var v = createVector(this.x,this.y);
-        this.history.push(v);
-        
+        this.history.push(v);       
         if(this.history.length > 15)
             {
                 this.history.splice(0,1);
@@ -119,10 +101,9 @@ function Particle(x,y)
         stroke(255,69,0);
         strokeWeight(10);
         fill(255,69,0,50);
-        ellipse(this.x,this.y,15,15);
-        
+        ellipse(this.x,this.y,15,15);  
         pop();
-        //beginShape();
+        
         for(var i = 0; i < this.history.length; i++)
             {
                 push();
@@ -130,28 +111,25 @@ function Particle(x,y)
                 stroke(51);
                fill(255,140,0);
                 ellipse(pos.x,pos.y,i,i);
-              //  vertex(pos.x,pos.y);
                 pop();
             }
-        //endShape();
-        
+      
          if(this.x < 0)
             {
                 this.x = width;
             }
-       else if(this.y < 0)
+         else if(this.y < 0)
             {
                 this.y = height;
             }
-       else if(this.x > width)
+         else if(this.x > width)
             {
                 this.x = 0;
             }
-       else if(this.y > height)
+         else if(this.y > height)
             {
                 this.y = 0;
             }
-       
     }
 }
 function windowResized() {
